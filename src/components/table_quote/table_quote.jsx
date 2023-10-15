@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import ReactToPrint from "react-to-print";
 import { QuoteToPrint } from  "../../components/quotetoprint/quotetoprint.jsx";
 
@@ -9,7 +9,7 @@ export default function TableQuoe() {
   const [table, setTable] = useState([]);
 
   function addItem() {
-    
+
   }
 
   return (
