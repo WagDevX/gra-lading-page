@@ -1,44 +1,36 @@
 import React from "react";
 
 export class QuoteToPrint extends React.PureComponent {
+  constructor(props) {
+    super.props;
+  }
 
-    constutor(props) {
-        super.props
-    }
+  render() {
+    const { dados } = this.props;
 
-    render() {
-
-      const { dados } = this.props;
-
-        return (
-          <>
-            <div class="canvas_div_pdf h-[1675px] w-[1184px] bg-white">
+    return (
+      <>
+        <div class="canvas_div_pdf h-[1675px] w-[1184px] bg-white">
           <div class="polyg flex bg-blue-900 justify-center h-[400px]">
-            <div
-              class="polyg grid justify-items-center bg-gradient-to-tr h-[200px] w-[1184px] from-blue-50 to-blue-300 pt-2"
-            >
+            <div class="polyg grid justify-items-center bg-gradient-to-tr h-[200px] w-[1184px] from-blue-50 to-blue-300 pt-2">
               <div class="relative">
-              <img
-                class=""
-                src="/logos/gralogo.png"
-                alt=""
-                width="250"
-                height="200"
-              />
-              <span class="absolute top-[65%] left-[17%] font-semibold drop-shadow-lg text-2xl text-blue-400"
-                >AUTOMAÇÕES</span>
-
+                <img
+                  class=""
+                  src="/logos/gralogo.png"
+                  alt=""
+                  width="250"
+                  height="200"
+                />
+                <span class="absolute top-[65%] left-[17%] font-semibold drop-shadow-lg text-2xl text-blue-400">
+                  AUTOMAÇÕES
+                </span>
               </div>
-             
-              
             </div>
           </div>
           <div class="px-20">
             <h1 class="text-5xl font-bold">ORÇAMENTO</h1>
             <div class="flex gap-5">
-              <dl
-                class="max-w-md text-gray-900 divide-y divide-gray-200 dark:divide-gray-700 mt-5"
-              >
+              <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:divide-gray-700 mt-5">
                 <div class="flex flex-col pb-3">
                   <dt class="mb-1 text-gray-500 md:text-md dark:text-gray-400">
                     NOME FANTASIA
@@ -62,9 +54,7 @@ export class QuoteToPrint extends React.PureComponent {
                   </dd>
                 </div>
               </dl>
-              <dl
-                class="max-w-md text-gray-900 divide-y divide-gray-200 dark:divide-gray-700 mt-5"
-              >
+              <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:divide-gray-700 mt-5">
                 <div class="flex flex-col pb-3">
                   <dt class="mb-1 text-gray-500 md:text-md dark:text-gray-400">
                     CONTATO
@@ -91,19 +81,24 @@ export class QuoteToPrint extends React.PureComponent {
             </div>
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
-              <table
-                class="w-full text-sm text-left text-blue-100 dark:text-blue-100"
-              >
-                <thead
-                  class="text-xs text-white uppercase bg-blue-600 dark:text-white"
-                >
+              <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
+                <thead class="text-xs text-white uppercase bg-blue-600 dark:text-white">
                   <tr>
                     <th scope="col" class="px-6 py-3">
                       Descrição do Produto/Serviço
                     </th>
-                    <th scope="col" class="px-6 py-3"> Quantidade</th>
-                    <th scope="col" class="px-6 py-3"> Preço unitário</th>
-                    <th scope="col" class="px-6 py-3"> Preço final</th>
+                    <th scope="col" class="px-6 py-3">
+                      {" "}
+                      Quantidade
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      {" "}
+                      Preço unitário
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      {" "}
+                      Preço final
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -167,10 +162,7 @@ export class QuoteToPrint extends React.PureComponent {
             </div>
           </div>
         </div>
-        </>
-        )
-       
-    }
-    
-    
+      </>
+    );
+  }
 }
