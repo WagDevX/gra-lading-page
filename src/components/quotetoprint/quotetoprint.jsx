@@ -2,7 +2,7 @@ import React from "react";
 
 export class QuoteToPrint extends React.PureComponent {
   constructor(props) {
-    super.props;
+    super(props);
   }
 
   render() {
