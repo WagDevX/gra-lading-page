@@ -7,6 +7,7 @@ export class QuoteToPrint extends React.PureComponent {
 
   render() {
     const { dados, total } = this.props;
+    const date = new Date();
 
     return (
       <>
@@ -83,7 +84,7 @@ export class QuoteToPrint extends React.PureComponent {
                   <dt class="mb-1 text-gray-500 md:text-md dark:text-gray-400">
                     DATA DE EMISSÃO
                   </dt>
-                  <dd class="text-md font-semibold">14 de Outubro de 2023</dd>
+                  <dd class="text-md font-semibold">{date.toLocaleDateString({options: "dd/mm/yyyy" })}</dd>
                 </div>
               </dl>
             </div>
