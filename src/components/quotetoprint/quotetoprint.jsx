@@ -10,7 +10,7 @@ export class QuoteToPrint extends React.PureComponent {
 
     return (
       <>
-        <div class="canvas_div_pdf h-[1675px] w-[1184px] bg-white">
+        <div class="canvas_div_pdf h-[1600px] w-[1184px] bg-white">
           <div class="quoteheader flex bg-blue-900 justify-center h-[400px]">
             <div class="firstquoteheader grid justify-items-center bg-gradient-to-b  h-[200px] w-[1184px] from-blue-50 to-blue-300 pt-2">
               <div class="relative">
@@ -129,9 +129,7 @@ export class QuoteToPrint extends React.PureComponent {
                         </td>
                         <td class="px-6 py-4">
                           {" "}
-                          {(
-                            parseInt(m.itemQuantity) * parseFloat(m.itemPrice)
-                          ).toLocaleString("pt-br", {
+                          {(parseInt(m.itemQuantity) * parseFloat(m.itemPrice.replace(",","."))).toLocaleString("pt-br", {
                             style: "currency",
                             currency: "BRL",
                           })}

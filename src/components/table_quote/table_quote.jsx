@@ -23,7 +23,7 @@ export default function TableQuote() {
       itemPrice: itemPrice
     }
     setTable((prev) => [...prev,item]);
-    setTotalSum((prev) => prev? prev + parseInt(itemQuantity) * parseFloat(itemPrice) :  parseInt(itemQuantity) * parseFloat(itemPrice));
+    setTotalSum((prev) => prev? prev + parseInt(itemQuantity) * parseFloat(itemPrice.replace(",",".")) :  parseInt(itemQuantity) * parseFloat(itemPrice));
 
   }
 
@@ -88,7 +88,7 @@ export default function TableQuote() {
                      </th>
                      <td class="px-6 py-4"> {m.itemQuantity}</td>
                      <td class="px-6 py-4"> {(parseFloat(m.itemPrice)).toLocaleString('pt-br', {style: 'currency', currency: "BRL"})}</td>
-                     <td class="px-6 py-4"> {(parseInt(m.itemQuantity) * parseFloat(m.itemPrice)).toLocaleString('pt-br', {style: 'currency', currency: "BRL"})}</td>
+                     <td class="px-6 py-4"> {(parseInt(m.itemQuantity) * parseFloat(m.itemPrice.replace(",","."))).toLocaleString('pt-br', {style: 'currency', currency: "BRL"})}</td>
                    </tr>
 
                   )}
