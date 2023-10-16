@@ -11,8 +11,8 @@ export class QuoteToPrint extends React.PureComponent {
     return (
       <>
         <div class="canvas_div_pdf h-[1675px] w-[1184px] bg-white">
-          <div class="polyg flex bg-blue-900 justify-center h-[400px]">
-            <div class="polyg grid justify-items-center bg-gradient-to-b  h-[200px] w-[1184px] from-blue-50 to-blue-300 pt-2">
+          <div class="quoteheader flex bg-blue-900 justify-center h-[400px]">
+            <div class="firstquoteheader grid justify-items-center bg-gradient-to-b  h-[200px] w-[1184px] from-blue-50 to-blue-300 pt-2">
               <div class="relative">
                 <img
                   class=""
