@@ -4,7 +4,7 @@ import { QuoteToPrint } from  "../../components/quotetoprint/quotetoprint.jsx";
 
 
 
-export default function TableQuoe() {
+export default function TableQuote() {
   const quoteToPrintRef = useRef(null);
   const [table, setTable] = useState([]);
 
