@@ -7,6 +7,27 @@ import { QuoteToPrint } from  "../../components/quotetoprint/quotetoprint.jsx";
 export default function TableQuote() {
   const quoteToPrintRef = useRef(null);
   const [table, setTable] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [itemDescription, setItemDescription] = useState("");
+  const [itemQuantity, setItemQuantity] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
+
+  function addItemToQuote() {
+    const item = {
+      firstName: firstName,
+      lastName: lastName,
+      itemDescription: itemDescription,
+      itemQuantity: itemQuantity,
+      itemPrice: itemPrice
+    }
+    setTable((prev) => [...prev,item]);
+  }
+
+
+
+
+
 
   return (
   <div class="grid w-full">
@@ -16,26 +37,26 @@ export default function TableQuote() {
     <div class="grid gap-6 mb-6 md:grid-cols-2 mt-5">
         <div>
             <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cliente: Primeiro nome</label>
-            <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="João" required />
+            <input value={firstName} onChange={(ev) => setFirstName(ev.target.value)}  type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="João" required />
         </div>
         <div>
-            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cliente: Segundo nome</label>
-            <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pessoa" required />
+            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cliente: Último nome</label>
+            <input value={lastName} onChange={(ev) => setLastName(ev.target.value)}  type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Pessoa" required />
         </div>
         <div>
-            <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição do item/serviço</label>
-            <input type="text" id="item_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome do Produto/Serviço" required />
+            <label for="item_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição do item/serviço</label>
+            <input value={itemDescription} onChange={(ev) => setItemDescription(ev.target.value)}  type="text" id="item_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nome do Produto/Serviço" required />
         </div>  
         <div>
-            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade do item</label>
-            <input type="number" id="quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Quantidade do item" required />
+            <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantidade do item</label>
+            <input value={itemQuantity} onChange={(ev) => setItemQuantity(ev.target.value)} type="number" id="quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Quantidade do item" required />
         </div>
         <div>
-            <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preço unitário do item/serviço</label>
-            <input type="price" id="item_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Preço do item" required />
+            <label for="tem_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preço unitário do item/serviço</label>
+            <input value={itemPrice} onChange={(ev) => setItemPrice(ev.target.value)} type="price" id="item_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Preço do item" required />
         </div>
         </div>
-    <button onClick={() => {}} type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Adicionar item</button>
+    <button onClick={() => addItemToQuote()} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Adicionar item</button>
 </form>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
