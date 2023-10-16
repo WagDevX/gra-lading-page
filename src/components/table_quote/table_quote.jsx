@@ -76,17 +76,17 @@ export default function TableQuote() {
                   </tr>
                 </thead>
                 <tbody>
-                  {table.length > 0 && table.map( (item) =>
+                  {table.length > 0 && table.map( (m) =>
                      <tr class="bg-blue-500 border-b border-blue-400">
                      <th
                        scope="row"
                        class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
                      >
-                       {item.name}
+                       {m.itemName}
                      </th>
-                     <td class="px-6 py-4"> {item.quantity}</td>
-                     <td class="px-6 py-4"> {item.price}</td>
-                     <td class="px-6 py-4"> {item.quantity * item.price}</td>
+                     <td class="px-6 py-4"> {m.itemQuantity}</td>
+                     <td class="px-6 py-4"> {m.itemPrice}</td>
+                     <td class="px-6 py-4"> {m.itemQuantity * m.itemPrice}</td>
                    </tr>
 
                   )}
