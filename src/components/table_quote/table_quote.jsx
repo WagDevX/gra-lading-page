@@ -12,6 +12,7 @@ export default function TableQuote() {
   const [itemDescription, setItemDescription] = useState("");
   const [itemQuantity, setItemQuantity] = useState("");
   const [itemPrice, setItemPrice] = useState("");
+  const [totalSum, setTotalSum] = useState();
 
   function addItemToQuote() {
     const item = {
@@ -22,7 +23,10 @@ export default function TableQuote() {
       itemPrice: itemPrice
     }
     setTable((prev) => [...prev,item]);
+    setTotalSum((prev) => prev? prev + parseInt(itemQuantity) * parseFloat(itemPrice) :  parseInt(itemQuantity) * parseFloat(itemPrice));
+
   }
+
 
 
 
@@ -33,7 +37,6 @@ export default function TableQuote() {
   <div class="grid w-full">
     <h1 className="text-primary text-3xl font-bold">Geração de orçamentos</h1>
     
-<form>
     <div class="grid gap-6 mb-6 md:grid-cols-2 mt-5">
         <div>
             <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cliente: Primeiro nome</label>
@@ -57,7 +60,6 @@ export default function TableQuote() {
         </div>
         </div>
     <button onClick={() => addItemToQuote()} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Adicionar item</button>
-</form>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
               <table
@@ -76,28 +78,40 @@ export default function TableQuote() {
                   </tr>
                 </thead>
                 <tbody>
-                  {table.length > 0 && table.map( (m) =>
-                     <tr class="bg-blue-500 border-b border-blue-400">
+                  {table.length > 0 && table.map( (m, index) =>
+                     <tr key={index} class="bg-blue-500 border-b border-blue-400">
                      <th
                        scope="row"
                        class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
                      >
-                       {m.itemName}
+                       {m.itemDescription}
                      </th>
                      <td class="px-6 py-4"> {m.itemQuantity}</td>
-                     <td class="px-6 py-4"> {m.itemPrice}</td>
-                     <td class="px-6 py-4"> {m.itemQuantity * m.itemPrice}</td>
+                     <td class="px-6 py-4"> {(parseFloat(m.itemPrice)).toLocaleString('pt-br', {style: 'currency', currency: "BRL"})}</td>
+                     <td class="px-6 py-4"> {(parseInt(m.itemQuantity) * parseFloat(m.itemPrice)).toLocaleString('pt-br', {style: 'currency', currency: "BRL"})}</td>
                    </tr>
 
                   )}
-                 
+                 <tr className='bg-blue-600'>
+                 <th
+                       scope="row"
+                       class="px-6 py-4 font-bold  text-black whitespace-nowrap dark:text-white"
+                     >
+                      TOTAL
+                      </th>
+                      <td></td>
+                      <td></td>
+                      <td className="px-6 py-4 font-bold text-black whitespace-nowrap dark:text-white">{
+                        (totalSum)?.toLocaleString('pt-br', {style: 'currency', currency: "BRL"})
+                        }</td>
+                 </tr>
                  
                 </tbody>
               </table>
             </div>
 
     <div className='hidden'>
-    <QuoteToPrint ref={quoteToPrintRef}  dados={table}/>
+    <QuoteToPrint ref={quoteToPrintRef} total={totalSum} dados={table}/>
     </div>  
     <ReactToPrint
               trigger={() => <button className=" mt-5 bg-primary hover:after:text-white  text-white border-transparent hover:border-[#172554] px-6 py-3  rounded-full outline-none relative overflow-hidden border duration-300 ease-linear

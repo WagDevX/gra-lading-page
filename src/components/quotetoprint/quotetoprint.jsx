@@ -6,7 +6,7 @@ export class QuoteToPrint extends React.PureComponent {
   }
 
   render() {
-    const { dados } = this.props;
+    const { dados, total } = this.props;
 
     return (
       <>
@@ -45,12 +45,20 @@ export class QuoteToPrint extends React.PureComponent {
                     31394 – ELISABETE DAS GRAÇAS FERREIRA DA SILVA
                   </dd>
                 </div>
-                <div class="flex flex-col pt-3">
+                <div class="flex flex-col pt-3 pb-3">
                   <dt class="mb-1 text-gray-500 md:text-md dark:text-gray-400">
                     ENDEREÇO
                   </dt>
                   <dd class="text-md font-semibold">
                     ARISTIDES BORSATO, 111 – FAZENDINHA
+                  </dd>
+                </div>
+                <div class="flex flex-col pt-3">
+                  <dt class="mb-1 text-gray-500 md:text-md dark:text-gray-400">
+                    CLIENTE
+                  </dt>
+                  <dd class="text-md font-semibold">
+                    {dados[0]?.firstName + " " + dados[0]?.lastName}
                   </dd>
                 </div>
               </dl>
@@ -102,60 +110,49 @@ export class QuoteToPrint extends React.PureComponent {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="bg-blue-500 border-b border-blue-400">
+                  {dados.length > 0 &&
+                    dados.map((m) => (
+                      <tr class="bg-blue-500 border-b border-blue-400">
+                        <th
+                          scope="row"
+                          class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
+                        >
+                          {m.itemDescription}
+                        </th>
+                        <td class="px-6 py-4"> {m.itemQuantity}</td>
+                        <td class="px-6 py-4">
+                          {" "}
+                          {parseFloat(m.itemPrice).toLocaleString("pt-br", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </td>
+                        <td class="px-6 py-4">
+                          {" "}
+                          {(
+                            parseInt(m.itemQuantity) * parseFloat(m.itemPrice)
+                          ).toLocaleString("pt-br", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </td>
+                      </tr>
+                    ))}
+                  <tr className="bg-blue-600">
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
+                      class="px-6 py-4 font-bold text-black whitespace-nowrap "
                     >
-                      Terminal dedicado XPE 1013 1/4
+                      TOTAL
                     </th>
-                    <td class="px-6 py-4"> 28</td>
-                    <td class="px-6 py-4"> R$ 620,00</td>
-                    <td class="px-6 py-4"> R$ 17.360,00</td>
-                  </tr>
-                  <tr class="bg-blue-500 border-b border-blue-400">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
-                    >
-                      Cabo cat5e
-                    </th>
-                    <td class="px-6 py-4"> White</td>
-                    <td class="px-6 py-4"> Laptop PC</td>
-                    <td class="px-6 py-4"> $1999</td>
-                  </tr>
-                  <tr class="bg-blue-500 border-b border-blue-400">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
-                    >
-                      MIP 1000
-                    </th>
-                    <td class="px-6 py-4"> Black</td>
-                    <td class="px-6 py-4"> Accessories</td>
-                    <td class="px-6 py-4"> $99</td>
-                  </tr>
-                  <tr class="bg-blue-500 border-b border-blue-400">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
-                    >
-                      Eletroímã PPA
-                    </th>
-                    <td class="px-6 py-4"> Gray</td>
-                    <td class="px-6 py-4"> Phone</td>
-                    <td class="px-6 py-4"> $799</td>
-                  </tr>
-                  <tr class="bg-blue-500 border-blue-40">
-                    <th
-                      scope="row"
-                      class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
-                    >
-                      Fonte Chaveada
-                    </th>
-                    <td class="px-6 py-4"> Red</td>
-                    <td class="px-6 py-4"> Wearables</td>
-                    <td class="px-6 py-4"> $999</td>
+                    <td></td>
+                    <td></td>
+                    <td className="px-6 py-4 font-bold text-black whitespace-nowrap ">
+                      {(total)?.toLocaleString("pt-br", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </td>
                   </tr>
                 </tbody>
               </table>
