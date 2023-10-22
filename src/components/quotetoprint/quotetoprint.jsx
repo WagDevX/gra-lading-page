@@ -6,8 +6,21 @@ export class QuoteToPrint extends React.PureComponent {
   }
 
   render() {
-    const { dados, total } = this.props;
+    const { dados } = this.props;
     const date = new Date();
+
+    let total = dados
+      .reduce((acomulator, dado) => {
+        return (
+          parseFloat(dado.itemPrice.replace(",", ".")) *
+            parseInt(dado.itemQuantity) +
+          acomulator
+        );
+      }, 0)
+      .toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      });
 
     return (
       <>
@@ -84,7 +97,9 @@ export class QuoteToPrint extends React.PureComponent {
                   <dt class="mb-1 text-gray-500 md:text-md dark:text-gray-400">
                     DATA DE EMISSÃO
                   </dt>
-                  <dd class="text-md font-semibold">{date.toLocaleDateString({options: "dd/mm/yyyy" })}</dd>
+                  <dd class="text-md font-semibold">
+                    {date.toLocaleDateString({ options: "dd/mm/yyyy" })}
+                  </dd>
                 </div>
               </dl>
             </div>
@@ -130,7 +145,10 @@ export class QuoteToPrint extends React.PureComponent {
                         </td>
                         <td class="px-6 py-4">
                           {" "}
-                          {(parseInt(m.itemQuantity) * parseFloat(m.itemPrice.replace(",","."))).toLocaleString("pt-br", {
+                          {(
+                            parseInt(m.itemQuantity) *
+                            parseFloat(m.itemPrice.replace(",", "."))
+                          ).toLocaleString("pt-br", {
                             style: "currency",
                             currency: "BRL",
                           })}
@@ -139,18 +157,14 @@ export class QuoteToPrint extends React.PureComponent {
                     ))}
                   <tr className="bg-blue-600">
                     <th
+                      colSpan={3}
                       scope="row"
-                      class="px-6 py-4 font-bold text-black whitespace-nowrap "
+                      class="px-6 py-4 font-extrabold text-xl text-center text-white whitespace-nowrap "
                     >
                       TOTAL
                     </th>
-                    <td></td>
-                    <td></td>
-                    <td className="px-6 py-4 font-bold text-black whitespace-nowrap ">
-                      {(total)?.toLocaleString("pt-br", {
-                        style: "currency",
-                        currency: "BRL",
-                      })}
+                    <td className="px-6 py-4 font-extrabold text-xl text-white whitespace-nowrap ">
+                      {total}
                     </td>
                   </tr>
                 </tbody>
