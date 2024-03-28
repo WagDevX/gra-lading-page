@@ -1,6 +1,6 @@
 <h1>GRA Automation Landing page</h1>
 
-A simple landing page for a digital agency
+A simple landing page for a automation company
 
 ## Tools
 - TailwindCSS v3.3
